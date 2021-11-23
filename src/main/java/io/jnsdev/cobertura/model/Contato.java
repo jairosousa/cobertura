@@ -1,6 +1,7 @@
 package io.jnsdev.cobertura.model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
@@ -11,10 +12,9 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-@ToString
-@EqualsAndHashCode(callSuper = false)
 public class Contato extends RepresentationModel<Contato> implements Serializable {
     private Long id;
     private String nome;
     private Integer idade;
+
 }

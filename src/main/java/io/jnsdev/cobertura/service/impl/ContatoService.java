@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -64,7 +65,9 @@ public class ContatoService implements IContatoService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public List<ContatoRef> getAllContatosRefList() {
-        List<ContatoEntity> entities = this.repository.findAll();
+        List<ContatoEntity> entities = this.getAllContatos()
+                .stream().map(mapper::toEntity)
+                .collect(Collectors.toList());
 
         if (!CollectionUtils.isEmpty(entities)) {
             List<ContatoRef> contatoRefs = this.mapper.toDtoRefList(entities);
@@ -77,6 +80,6 @@ public class ContatoService implements IContatoService {
             return contatoRefs;
         }
 
-        return null;
+        return Collections.emptyList();
     }
 }

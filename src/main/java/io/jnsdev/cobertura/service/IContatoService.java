@@ -23,7 +23,7 @@ public interface IContatoService {
      * @param contatoId
      * @return Contato
      */
-    Contato getStudentById(Long contatoId);;
+    Contato getStudentById(Long contatoId);
 
     /**
      * create a Contact instance in the database
